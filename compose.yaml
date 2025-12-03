@@ -2,19 +2,24 @@ version: "3.9"
 
 services:
   household-inventory:
-    image: mythtechs/household-inventory:latest
+    build: .                              # Builds from local Dockerfile in repo
     container_name: household-inventory
     restart: unless-stopped
     ports:
-      - "5000:5000"                # remove or change if behind reverse proxy
+      - "5000:5000"                       # Access at http://localhost:5000 or your-server-ip:5000
     volumes:
-      - inventory_data:/app/inventory.db
+      - inventory_data:/app/inventory.db   # Persistent SQLite database
     environment:
-      - TZ=Etc/UTC                 # change to your timezone, e.g. America/New_York
+      - TZ=America/Los_Angeles              # Set your timezone (e.g., Europe/London, Asia/Tokyo)
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"   # optional auto-update
-      - "org.portainer.display=Household Inventory"
+      - "traefik.enable=false"             # Disable if using Traefik; optional for other proxies
 
 volumes:
   inventory_data:
-    name: household-inventory-data
+    name: household-inventory-data        # Named volume for easy backup/migration
