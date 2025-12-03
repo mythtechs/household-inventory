@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Add New Item</h2>
+<form method="POST">
+    <label>Item Name: <input type="text" name="name" required></label><br>
+    <label>Initial Quantity: <input type="number" name="quantity" min="0" value="0" required></label><br>
+    <button type="submit">Add</button>
+</form>
+<a href="{{ url_for('index') }}">Back to Inventory</a>
+{% endblock %}

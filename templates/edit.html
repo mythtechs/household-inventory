@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Edit Item Name</h2>
+<form method="POST">
+  <p>
+    <label>
+      New name:<br>
+      <input type="text" name="name" value="{{ item.name }}" required style="width:300px; font-size:1.1em; padding:8px;">
+    </label>
+  </p>
+  <button type="submit" style="padding:10px 20px; font-size:1.1em;">Save Changes</button>
+  <a href="{{ url_for('index') }}" style="margin-left:20px;">Cancel</a>
+</form>
+{% endblock %}
