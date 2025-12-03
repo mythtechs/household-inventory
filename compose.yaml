@@ -6,7 +6,7 @@ services:
     container_name: household-inventory
     restart: unless-stopped
     ports:
-      - "5000:5000"                       # Access at http://localhost:5000 or your-server-ip:5000
+      - "${HOST_PORT:-0}:5000"        # ← uses HOST_PORT env var if set, otherwise random
     volumes:
       - inventory_data:/app/inventory.db   # Persistent SQLite database
     environment:
