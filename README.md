@@ -1,16 +1,25 @@
-# household-inventory
 # Household Inventory Tracker
 
-Simple, self-hosted web app to track household items (toilet paper, toothpaste, etc.).
+A simple, self-hosted web application for tracking household essentials like toilet paper, toothpaste, and more. Built with Flask, SQLite, and Docker for easy deployment.
 
-- Add / edit / delete items
-- Edit item names
-- Increment / decrement / set exact quantity
-- Data persists forever
-- Works on Windows, Linux, macOS, Raspberry Pi
+![App Screenshot](https://via.placeholder.com/800x400?text=Household+Inventory+App) <!-- Replace with actual screenshot -->
 
-## One-command deployment
+## Features
+- Add, edit (name/quantity), and delete items
+- Increment/decrement quantities or set exact values
+- Persistent data storage (SQLite database)
+- Responsive web UI
+- One-command Docker deployment
+- Works on Windows, Linux, macOS, Raspberry Pi, or any VPS
 
+## Quick Start
+
+### Prerequisites
+- [Docker](https://www.docker.com/products/docker-desktop/) installed
+- [Docker Compose](https://docs.docker.com/compose/install/) (included with Docker Desktop)
+
+### Deploy with Git Clone (Recommended)
 ```bash
-curl -O https://raw.githubusercontent.com/mythtechs/household-inventory/main/compose.yaml
-docker compose up -d
+git clone https://github.com/mythtechs/household-inventory.git
+cd household-inventory
+docker compose up -d --build
