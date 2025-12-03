@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  household-inventory:
+    image: mythtechs/household-inventory:latest
+    container_name: household-inventory
+    restart: unless-stopped
+    ports:
+      - "5000:5000"                # remove or change if behind reverse proxy
+    volumes:
+      - inventory_data:/app/inventory.db
+    environment:
+      - TZ=Etc/UTC                 # change to your timezone, e.g. America/New_York
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"   # optional auto-update
+      - "org.portainer.display=Household Inventory"
+
+volumes:
+  inventory_data:
+    name: household-inventory-data
